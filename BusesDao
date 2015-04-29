@@ -1,0 +1,33 @@
+
+package model.dao;
+
+import java.util.List;
+import model.pojo.Buses;
+import model.pojo.Distances;
+import model.util.HibernateUtil;
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+
+public class BusesDao {
+
+    public static List<Buses> Get_Buses(){
+    
+        List<Buses> lst=null;
+        
+        try{
+            Session session=HibernateUtil.getSessionFactory().openSession();
+            String hql="from Buses";
+            
+            Query query=session.createQuery(hql);
+            lst=query.list();
+            System.out.println("hkhfdsufhd dsfdshfds fdhfds buses size is : "+lst.size()+ lst.toString());            
+            session.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return lst; 
+    }
+    
+    
+}
